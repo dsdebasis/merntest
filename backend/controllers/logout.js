@@ -1,6 +1,6 @@
 const logout = (req, res) => {
-  const user = req.cookies
-console.log(user)
+  const user = req.cookies.accessToken
+
   if(!user){
     return res.status(400).json({
       msg:"no cookies found"

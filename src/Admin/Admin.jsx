@@ -8,7 +8,7 @@ const Admin = () => {
     password: "",
     confirm_password: ""
   })
-
+       
   const handleInput = function (e) {
     e.preventDefault()
 
@@ -21,7 +21,7 @@ const Admin = () => {
   }
   return (
     <section className='h-screen w-screen flex justify-center items-center bg-gray-900'>
-      <form className='md:h-[80vh] md:w-[30vw]  bg-slate-500 text-white rounded-xl  flex flex-col gap-y-3 p-10 ' onSubmit={handleSubmit}>
+      <form className='md:min-h-[90vh] md:w-[30vw]  bg-slate-700 text-white rounded-xl  flex flex-col gap-y-3 p-10 ' onSubmit={handleSubmit}>
         <header className="text-center">Admin Registration Form </header>
 
         <label htmlFor='full_name'>Full Name</label>
