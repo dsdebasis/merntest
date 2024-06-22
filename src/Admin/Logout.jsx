@@ -19,7 +19,7 @@ function Logout() {
       .then((data) => {
         console.log(data)
         toast.success(data.data.msg)
-        navigate("/wellcome")
+        // navigate("/wellcome")
       }).catch((error) => {
         console.log(error.response.data.msg)
         toast.error(error.response.data.msg)

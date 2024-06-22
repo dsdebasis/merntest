@@ -22,7 +22,13 @@ const AdminPage = () => {
     withCredentials: true,
   };
   useEffect(() => {
-    axios.get("http://localhost:7000/api/v1/getemp", {}, config)
+    axios.get("http://localhost:7000/api/v1/getemp", {
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json",
+      },
+      withCredentials: true,
+    })
       .then((data) => {
         console.log(data.data)
         let newdata = data.data.empData
@@ -51,7 +57,7 @@ const AdminPage = () => {
   return (
     <section className='h-screen w-full bg-gradient-to-br from-slate-500 to-slate-600 px-10 text-white'>
       <div className='border-2 h-20 w-full rounded-md flex justify-around items-center'>
-        <Link>Home</Link>
+        <Link to={"/"}>Home</Link>
         <Link to="/logout">Logout</Link>
       </div>
       <h1 className='text-center my-5 text-yellow-400 bg-yellow-800 rounded-md '>Dashboard</h1>

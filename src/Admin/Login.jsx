@@ -25,7 +25,7 @@ const Login = () => {
       userData, config)
       .then((data) => {
         toast(data.data.msg)
-       navigate("/wellcome")
+      //  navigate("/wellcome")
       }).catch((error) => {
         console.log(error.response.data.msg)
         toast.error(error.response.data.msg)

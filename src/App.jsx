@@ -16,7 +16,7 @@ routes = createBrowserRouter(
       element: <Admin />
     },
     {
-      path: "/wellcome",
+      path: "/admin",
       element: <AdminPage />
     },
     {

@@ -6,7 +6,7 @@ const authenticate = async function (req, res, next) {
   let cookies = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "")
   // console.log(cookies)
   let verify
-
+// console.log(cookies)
   if (cookies) {
     verify = jwt.verify(cookies, process.env.ACCESS_TOKEN_SECRET)
   } else{

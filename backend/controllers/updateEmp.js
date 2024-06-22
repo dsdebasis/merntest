@@ -8,22 +8,36 @@ const updateEmploye = async function (req, res) {
       msg: "emp id is requierd"
     })
   }
-
-  const { name, email, mobileNo, gender, course, designation, img } = req.body
-  if (!name || !email || !mobileNo || !gender || !course || !designation ) {
-    return res.status(400).json({
-      msg: "Every field is required for update"
-    })
-  }
-  let updateEmp;
   if (id) {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({
         msg: "Invalid ID"
       });
     }
+    const { name, email, mobileNo, gender, course, designation, img } = req.body
+    if (!name || !email || !mobileNo || !gender || !course || !designation) {
+      return res.status(400).json({
+        msg: "Every field is required for update"
+      })
+    }
+    let updateEmp;
+
     let findEmp = await Employe.findById(id)
 
+    const emailValidator = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailValidator.test(email)) {
+
+      return res.status(400).json({
+        msg: "Please Provide a valid email address"
+      })
+    }
+    const mobileNumberPattern = /^[789]\d{9}$/;
+    if (!mobileNumberPattern.test(mobileNo)) {
+      return res.status(400).json({
+        msg: "Invalid Mobile Number"
+      })
+    }
     if (findEmp) {
       try {
         updateEmp = await Employe.findByIdAndUpdate(id, {
@@ -50,19 +64,19 @@ const updateEmploye = async function (req, res) {
       return res.status(400).json({
         msg: "Invalid Employe ID"
       })
-    }
+    } 
   }
 
 
-  return res.status(200).json({
+  return res.status(200).json({ 
     msg: "update successfully",
-    empData: updateEmp
+    // empData: updateEmp
   })
 }
 
 
 const deleteEmp = async function (req, res) {
-console.log("delete ers")
+  console.log("delete ers")
   const { id } = req.body
   if (!id) {
     return res.status(400).json({
