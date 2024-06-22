@@ -42,6 +42,8 @@ const Login = () => {
     <section className='h-screen w-screen bg-gradient-to-b from-slate-800 to-slate-600 flex justify-center items-center'>
 
       <form className=' text-white flex flex-col rounded-md lg:w-[40vw] border-2 px-3 py-10 gap-y-5' onSubmit={handleLogin}>
+
+        <h1 className='text-center'>Please Login</h1>
         <label htmlFor='userName'>User Name</label>
         <input className='bg-transparent border-2 rounded-md p-2' name='userName' id='userName' type='text' required onChange={hadleChange}/>
 

@@ -22,7 +22,7 @@ const employeSchema = new Schema({
   designation: {
     type: String,
     required: [true, "A designation is required"],
-    enum: ['HR', 'Manager', 'Sales']
+    enum: ['hr', 'manager', 'sales']
   },
   gender: {
     type: String,

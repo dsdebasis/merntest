@@ -4,7 +4,7 @@ const authenticate = async function (req, res, next) {
 
 
   let cookies = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "")
-  console.log(cookies)
+  // console.log(cookies)
   let verify
 
   if (cookies) {

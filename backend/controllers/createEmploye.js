@@ -41,7 +41,13 @@ const createEmploye = async function (req, res) {
     img:"undefined"
   })
   
-  await newEmp.save()
+  try {
+    await newEmp.save()
+  } catch (error) {
+    return res.status(400).json({
+      msg:"unable to create employe",error
+    })
+  }
 
   return res.status(201).json({
     msg:"successfully emp created",

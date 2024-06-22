@@ -4,7 +4,7 @@ const empDetails =async function(req,res){
   let emp = await Employe.find({})
 
   return res.status(200).json({
-    data:emp
+    empData:emp
   })
 }
 

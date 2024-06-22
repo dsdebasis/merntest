@@ -4,7 +4,10 @@ import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+
+
 function EmpForm() {
+
 
   const [formData, setData] = useState({})
   const [files, setFiles] = useState()
@@ -21,7 +24,8 @@ function EmpForm() {
     console.log(formData, files)
     axios.post("http://localhost:7000/api/v1/createemploye", formData, config)
       .then((data) => {
-        console.log(data)
+        // console.log(data)
+        toast.success(data.data.msg)
       }).catch((error) => {
         toast.error(error.response.data.msg)
         console.log(error)
@@ -32,9 +36,32 @@ function EmpForm() {
     e.preventDefault()
     clearTimeout(timeerId)
     timeerId = setTimeout(() => {
-      setData({ ...formData, [e.target.name]: e.target.value })
+
+      setData({ ...formData, [e.target.name]: e.target.value, id: localStorage.getItem("id") })
+
     }, 500)
   }
+
+  const handleUpdate = function (e) {
+    console.log(formData)
+    e.preventDefault()
+
+    axios.put("http://localhost:7000/api/v1/createemploye", formData, config)
+      .then((data) => {
+        console.log(data.data.msg)
+        toast.success(data.data.msg)
+      })
+      .catch((error) => {
+        console.log(error)
+        toast.error(error.response.data.msg)
+      })
+  }
+
+  // const handleDelete = function (e) {
+  //   e.preventDefault()
+
+  // }
+
   return (
     <form className='md:min-h-fit md:w-[30vw]  bg-gradient-to-bl from-slate-800 to-zinc-600 text-white rounded-xl  flex flex-col gap-y-2 py-3 px-7 ' onSubmit={handleSubmit}>
       <header className="text-center">Admin Registration Form </header>
@@ -69,8 +96,8 @@ function EmpForm() {
       <div className='flex justify-evenly  py-2 '>
         <label htmlFor='course' >Course</label>
 
-        <label htmlFor='course'>MBA</label>
-        <input name='course' value={"MBA"} id='mba' type='checkbox' onChange={handleInput} />
+        <label htmlFor='course'>MCA</label>
+        <input name='course' value={"MCA"} id='mca' type='checkbox' onChange={handleInput} />
 
         <label htmlFor='course'>BCA</label>
         <input name='course' value={"BCA"} id='bca' type='checkbox' onChange={handleInput} />
@@ -85,7 +112,11 @@ function EmpForm() {
         setFiles(e.target.files[0])
 
       }} />
-      <button type='submit' className='w-full   bg-blue-500 py-2 rounded-md' >Submit</button>
+      <div className='flex gap-x-3'>
+        <button type='submit' className='w-full   bg-blue-500 py-2 rounded-md' >Submit</button>
+        <button type='submit' className='w-full   bg-sky-500 py-2 rounded-md' onClick={handleUpdate} id=''>Edit</button>
+
+      </div>
       <ToastContainer />
     </form>
   )
