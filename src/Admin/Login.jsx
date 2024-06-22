@@ -3,7 +3,7 @@ import { useState } from 'react'
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const Login = () => {
 
   const [userData, setUserData] = useState({})
@@ -49,7 +49,8 @@ const Login = () => {
 
         <label htmlFor='password'>Password</label>
         <input className='bg-transparent  border-2 rounded-md p-2' name='password' id='password' type='password' required onChange={hadleChange} />
-
+      
+        <Link to={"/register"}>Don't Have an accoutn ? <span className='hover:text-sky-500'>Register</span></Link>
         <button disabled={loading} type='submit' className=' h-14 hover:bg-red-500 rounded-md bg-blue-800 '>Log in</button >
       </form>
       <ToastContainer />
